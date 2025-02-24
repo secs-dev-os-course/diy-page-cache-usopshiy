@@ -41,6 +41,7 @@ static int cache_init() {
 static cache_page_t* cache_lookup(off_t offset) {
     for (size_t i = 0; i < PAGE_AMOUNT; i++) {
         if (cache.pages[i].offset == offset) {
+            cache.pages[i].reference = 1;
             return &cache.pages[i];
         }
     }
